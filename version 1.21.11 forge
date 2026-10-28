@@ -1,0 +1,42 @@
+package com.example.weaponcraft;
+
+import net.fabricmc.api.ModInitializer;
+import net.minecraft.item.Item;
+import net.minecraft.item.SwordItem;
+import net.minecraft.item.ToolMaterial;
+import net.minecraft.item.Items;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
+import net.minecraft.registry.tag.BlockTags;
+import net.minecraft.registry.tag.ItemTags;
+import net.minecraft.util.Identifier;
+
+public class WeaponCraft implements ModInitializer {
+    public static final String MOD_ID = "weaponcraft";
+
+    public static final ToolMaterial ENERGY_MATERIAL =
+        new ToolMaterial(
+            BlockTags.INCORRECT_FOR_DIAMOND_TOOL,
+            1800,
+            9.0F,
+            4.0F,
+            18,
+            ItemTags.REPAIRS_DIAMOND_ARMOR
+        );
+
+    public static final Item ENERGY_BLADE = Registry.register(
+        Registries.ITEM,
+        Identifier.of(MOD_ID, "energy_blade"),
+        new SwordItem(
+            ENERGY_MATERIAL,
+            5,
+            -2.0F,
+            new Item.Settings()
+        )
+    );
+
+    @Override
+    public void onInitialize() {
+        System.out.println("WeaponCraft loaded!");
+    }
+}
